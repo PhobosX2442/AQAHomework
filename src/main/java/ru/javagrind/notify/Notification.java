@@ -1,4 +1,4 @@
-package Notify;
+package ru.javagrind.notify;
 
 public class Notification {
     private final int id;
@@ -17,23 +17,23 @@ public class Notification {
     }
 
     public Notification(Priority priority, String message) {
-        this.message = message;
         this.priority = priority;
+        this.message = message;
         this.id = nextId++;
     }
 
     public Notification() {
-        this.message = "empty";
-        this.priority = Priority.NORMAL;
-        this.id = nextId++;
+        this(Priority.NORMAL, "empty");
     }
 
 
     public void send() {
-        System.out.print("id: " + getId() + ", ");
-        System.out.println("Приоритет: " + getPriority());
-        System.out.println("Сообщение: " + getMessage());
-        System.out.println();
+//        System.out.print("id: " + getId() + ", ");
+//        System.out.println("Приоритет: " + getPriority());
+//        System.out.println("Сообщение: " + getMessage());
+//        System.out.println();
+
+        System.out.println(this);
 
     }
 
@@ -44,6 +44,6 @@ public class Notification {
 
     @Override
     public String toString() {
-        return "id: " + getId() + ", Приоритет: " + getPriority() + ", Сообщение:" + getMessage();
+        return "id: " + getId() + "\nПриоритет: " + getPriority() + "\nСообщение: " + getMessage() + "\n";
     }
 }
