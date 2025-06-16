@@ -1,4 +1,4 @@
-package Notify;
+package ru.javagrind.notify;
 
 public class SmsNotification extends Notification{
     private String phoneNumber;
@@ -17,11 +17,14 @@ public class SmsNotification extends Notification{
 
     @Override
     public void send() {
-        System.out.print("id: " + getId() + ", ");
-        System.out.println("Приоритет: " + getPriority());
-        System.out.println("Отправляем SMS на " + getPhoneNumber());
-        System.out.println("Сообщение: " + getMessage());
-        System.out.println();
+        System.out.println("Отправляем SMS на ...");
+        super.send();
+
+//        System.out.print("id: " + getId() + ", ");
+//        System.out.println("Приоритет: " + getPriority());
+//        System.out.println("Отправляем SMS на " + getPhoneNumber());
+//        System.out.println("Сообщение: " + getMessage());
+//        System.out.println();
 
     }
 }
