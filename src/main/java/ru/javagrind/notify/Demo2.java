@@ -26,6 +26,7 @@ public class Demo2 {
         System.out.println("Уведомления с приоритетом HIGH:");
         List<Notification> highPriorityNotifications = manager.get(Priority.HIGH);
         highPriorityNotifications.forEach(System.out::println);
+        System.out.println("Конец уведомлений с приоритетом HIGH \n");
 
         //Поиск по id
         int idToFind = 11;
