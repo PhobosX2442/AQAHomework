@@ -1,5 +1,7 @@
 package ru.javagrind.notify;
 
+import java.util.ArrayList;
+
 public class SmsNotification extends Notification{
     private String phoneNumber;
 
@@ -10,21 +12,16 @@ public class SmsNotification extends Notification{
         this.phoneNumber = phoneNumber;
     }
 
-    public SmsNotification(String message, String phoneNumber) {
-        super(Priority.LOW, message);
+    public SmsNotification(String message, String phoneNumber, Priority Priority) {
         this.phoneNumber = phoneNumber;
     }
 
     @Override
     public void send() {
         System.out.println("Отправляем SMS на ...");
-        super.send();
-
-//        System.out.print("id: " + getId() + ", ");
-//        System.out.println("Приоритет: " + getPriority());
-//        System.out.println("Отправляем SMS на " + getPhoneNumber());
-//        System.out.println("Сообщение: " + getMessage());
-//        System.out.println();
 
     }
+
+
 }
+

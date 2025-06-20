@@ -1,7 +1,8 @@
 package ru.javagrind.notify;
 
-public class Notification {
+public abstract class Notification implements Sendable{
     private final int id;
+    public boolean getId;
     private String message;
     private Priority priority;
     private static int nextId = 1;
@@ -27,15 +28,7 @@ public class Notification {
     }
 
 
-    public void send() {
-//        System.out.print("id: " + getId() + ", ");
-//        System.out.println("Приоритет: " + getPriority());
-//        System.out.println("Сообщение: " + getMessage());
-//        System.out.println();
-
-        System.out.println(this);
-
-    }
+    public abstract void send();
 
     public void send(String extra) {
         System.out.println("Notification: " + message);
