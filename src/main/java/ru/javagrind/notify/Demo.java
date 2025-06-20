@@ -9,11 +9,13 @@ public class Demo {
         String email = "qqq@qq.qq";
         String phoneNumber = "123123123";
 
-        Notification notification = new Notification(priority, message);
-        Notification emailNotification = new EmailNotification(message, email);
-        Notification smsNotification = new SmsNotification(message, phoneNumber);
+        //Notification notification = new Notification(priority, message);
+        Notification emailNotification = new EmailNotification(message, email, priority);
+        Notification smsNotification = new SmsNotification(message, phoneNumber, priority);
 
-        Notification[] notifications = {notification, emailNotification, smsNotification};
+        //Notification[] notifications = {notification, emailNotification, smsNotification};
+        Notification[] notifications = {emailNotification, smsNotification};
+
 
         for (Notification n : notifications) {
             n.send();
