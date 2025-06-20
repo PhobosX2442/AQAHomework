@@ -59,6 +59,7 @@ public class NotificationManager <T extends Notification> {
 
     //sendAll
     public void sendAll() {
+        System.out.println("Отправляем все уведомления");
         for (Notification notification : list) {
             notification.send();
         }
