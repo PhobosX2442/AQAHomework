@@ -8,8 +8,8 @@ public class Demo2 {
         //Уведомления
         Notification emailNotif1 = new EmailNotification("тест сообщение 1", "qqq@qq.qq", Priority.HIGH);
         Notification smsNotif1 = new SmsNotification("тест сообщение 2", "8 800 555 3535", Priority.HIGH);
-        Notification emailNotif2 = new EmailNotification("тест сообщение 3", "www@qq.qq", Priority.NORMAL);
-        Notification smsNotif2 = new SmsNotification("тест сообщение 4", "8 800 555 3535", Priority.LOW);
+        Notification emailNotif2 = new EmailNotification("тест сообщение 3", "kukareku@qq.qq", Priority.NORMAL);
+        Notification smsNotif2 = new SmsNotification("тест сообщение 4", "1 234 567 8900", Priority.LOW);
 
         try {
             manager.add(emailNotif1);
@@ -27,16 +27,16 @@ public class Demo2 {
         List<Notification> highPriorityNotifications = manager.get(Priority.HIGH);
         highPriorityNotifications.forEach(System.out::println);
 
-        manager.sendAll();
-
-
-
+        //Поиск по id
         int idToFind = 11;
         Optional<Notification> notifOpt = manager.find(idToFind);
         notifOpt.ifPresentOrElse(
                 Notification::send,
-                () -> System.out.println("Уведомление с id " + idToFind + " не найдено.")
+                () -> System.out.println("Уведомление с id " + idToFind + " не найдено. \n")
         );
+
+        //sendAll
+        manager.sendAll();
 
     }
 }
