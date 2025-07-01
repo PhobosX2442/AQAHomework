@@ -1,17 +1,25 @@
 package ru.javagrind.notify;
+import java.util.*;
 
-import java.util.ArrayList;
 
 public interface Sendable {
     public abstract void send();
 
-    default void sendAll() {
-        send(); {
-            System.out.println("Отправляем сообщение на ...");
+    static void sendAll(List<? extends Sendable> notifications) {
+        System.out.println("Отправляем все уведомления");
+        for (Sendable t : notifications) {
+            t.send();
         }
+        System.out.println("+++++++++++++++++++++++++++++++++++++");
     }
 
+    default void sendWithLogging() {
+        System.out.println("Начинаю sendWithLogging \n");
+        this.send();
+        System.out.println("Заканчиваю sendWithLogging \n");
+        System.out.println("--------------------------------------");
 
+    }
 }
 
 

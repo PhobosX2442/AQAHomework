@@ -6,7 +6,7 @@ import java.util.*;
 public class NotificationManager <T extends Notification> {
 
     private final List<T> list = new ArrayList<>();
-    private final Map<Priority, List<Notification>> notificationsByPriority = new HashMap<>();
+    private final Map<Priority, List<T>> notificationsByPriority = new HashMap<>();
 
     public NotificationManager() {
         for (Priority priority : Priority.values()) {
@@ -15,55 +15,42 @@ public class NotificationManager <T extends Notification> {
     }
 
     //add
-    public void add(Notification n) throws DuplicateIdException {
-        for (Notification existing : list) {
+    public void add(T n) throws DuplicateIdException {
+        for (T existing : list) {
             if (existing.getId() == n.getId()) {
                 throw new DuplicateIdException("Уведомление с таким id уже существует: " + n.getId());
             }
         }
-        list.add((T) n);
+        list.add(n);
 
         Priority priority = n.getPriority();
-        List<Notification> listForPriority = notificationsByPriority.get(priority);
-        if (listForPriority == null) {
-            listForPriority = new ArrayList<>();
-            notificationsByPriority.put(priority, listForPriority);
-        }
+
+        List<T> listForPriority = notificationsByPriority.computeIfAbsent(priority, k -> new ArrayList<>());
         listForPriority.add(n);
     }
 
-    // find
-    public Optional<Notification> find(int id) {
-        for (Notification notification : list) {
-            try {
-                if (notification.getId() == id) {
-                    return Optional.of(notification);
-                }
-            } catch (NumberFormatException e) {
-                throw new DuplicateIdException("Уведомление с таким id уже существует: " + id);
-            }
 
-        }
-        return Optional.empty();
+    // find
+    public Optional<T> find(int id) {
+        return list.stream()
+                .filter(notification -> notification.getId() == id)
+                .findFirst();
     }
 
 
     // get
-    public List<Notification> get(Priority priority) {
-        List<Notification> originalList = notificationsByPriority.get(priority);
-        if (originalList == null) {
-            return new ArrayList<>();
-        }
+    public List<T> get(Priority priority) {
+        List<T> originalList = notificationsByPriority.get(priority);
         return new ArrayList<>(originalList);
     }
 
     //sendAll
     public void sendAll() {
         System.out.println("Отправляем все уведомления");
-        for (Notification notification : list) {
+        for (T notification : list) {
             notification.send();
         }
+        System.out.println("-------------------------------------- \n");
     }
-
 
 }

@@ -36,8 +36,10 @@ public class Demo2 {
                 () -> System.out.println("Уведомление с id " + idToFind + " не найдено. \n")
         );
 
-        //sendAll
+
+        //manager sendAll + sendWithLogging
         manager.sendAll();
+        smsNotif2.sendWithLogging();
 
     }
 }

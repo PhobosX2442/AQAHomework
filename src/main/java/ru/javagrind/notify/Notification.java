@@ -2,7 +2,6 @@ package ru.javagrind.notify;
 
 public abstract class Notification implements Sendable{
     private final int id;
-    public boolean getId;
     private String message;
     private Priority priority;
     private static int nextId = 1;
@@ -32,7 +31,7 @@ public abstract class Notification implements Sendable{
 
     public void send(String extra) {
         System.out.println("Notification: " + message);
-        System.out.println("extra");
+        System.out.println(extra);
     }
 
     @Override
